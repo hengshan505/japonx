@@ -2,7 +2,7 @@
 #!desc=信息面板
 #!system=ios
 
-[panel]
+[Panel]
 # 机场信息
 Sub_info = script-name=Sub_info,update-interval=86400
 Sub_info = script-name=Sub_info1,update-interval=86400
