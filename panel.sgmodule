@@ -1,6 +1,5 @@
-#!name=panels
+#!name=Panels
 #!desc=信息面板
-#!system=ios
 
 [Panel]
 # 机场信息
