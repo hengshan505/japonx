@@ -1,0 +1,9 @@
+#!name=Panels
+ #!desc=信息面板
+
+ [Panel]
+# YouTube premium 解锁检测
+youtube_premium_check = script-name=youtube_premium_check, title="YouTube Premium 解锁检测", update-interval=1
+[Script]
+# YouTube premium 解锁检测
+youtube_premium_check = type=generic,script-path=https://gist.githubusercontent.com/Hyseen/5ae36a6a5cb5690b1f2bff4aa19c766f/raw/youtube_premium_check.js?version=1632728073, timeout=30
