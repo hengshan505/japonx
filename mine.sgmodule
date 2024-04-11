@@ -3,23 +3,14 @@
 
 [Rule]
 # > surfshark
-DOMAIN-KEYWORD,surfshark,Domestic
-DOMAIN-KEYWORD,appcenter,Domestic
-DOMAIN-KEYWORD,uymgg1,Domestic
-DOMAIN-KEYWORD,surfsharkstatus,Domestic
-DOMAIN-KEYWORD,ipv6505,Domestic
+DOMAIN-KEYWORD,surfshark,DIRECT
+DOMAIN-KEYWORD,appcenter,DIRECT
+DOMAIN-KEYWORD,uymgg1,DIRECT
+DOMAIN-KEYWORD,surfsharkstatus,DIRECT
+DOMAIN-KEYWORD,ipv6505,DIRECT
 # > Pornemby Vip
-DOMAIN-SUFFIX,ii00.cc,Domestic
+DOMAIN-KEYWORD,ii00,DIRECT
 # Japonx
-DOMAIN-KEYWORD,japonx,Domestic
-DOMAIN-SUFFIX,japronx,Domestic
-DOMAIN-SUFFIX,japonx.com,Domestic
-DOMAIN-SUFFIX,japonx.net,Domestic
-DOMAIN-SUFFIX,japonx.tv,Domestic
-DOMAIN-SUFFIX,japonx.vip,Domestic
-DOMAIN-SUFFIX,japronx.com,Domestic
-DOMAIN-SUFFIX,japronx.net,Domestic
-DOMAIN-SUFFIX,japronx.tv,Domestic
-DOMAIN-SUFFIX,japronx.vip,Domestic
+DOMAIN-KEYWORD,japonx,DIRECT
 # 群晖
-DOMAIN-KEYWORD,synology,Domestic
+DOMAIN-KEYWORD,synology,DIRECT
