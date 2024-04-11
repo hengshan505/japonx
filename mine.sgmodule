@@ -3,23 +3,23 @@
 
 [Rule]
 # > surfshark
-DOMAIN-KEYWORD,surfshark,🌐 全球直连
-DOMAIN-KEYWORD,appcenter,🌐 全球直连
-DOMAIN-KEYWORD,uymgg1,🌐 全球直连
-DOMAIN-KEYWORD,surfsharkstatus,🌐 全球直连
-DOMAIN-KEYWORD,ipv6505,🌐 全球直连
+DOMAIN-KEYWORD,surfshark,DIRECT
+DOMAIN-KEYWORD,appcenter,DIRECT
+DOMAIN-KEYWORD,uymgg1,DIRECT
+DOMAIN-KEYWORD,surfsharkstatus,DIRECT
+DOMAIN-KEYWORD,ipv6505,DIRECT
 # > Pornemby Vip
-DOMAIN-SUFFIX,ii00.cc,👩 成人频道
+DOMAIN-SUFFIX,ii00.cc,DIRECT
 # Japonx
-DOMAIN-KEYWORD,japonx,👩 成人频道
-DOMAIN-SUFFIX,japronx,👩 成人频道
-DOMAIN-SUFFIX,japonx.com,👩 成人频道
-DOMAIN-SUFFIX,japonx.net,👩 成人频道
-DOMAIN-SUFFIX,japonx.tv,👩 成人频道
-DOMAIN-SUFFIX,japonx.vip,👩 成人频道
-DOMAIN-SUFFIX,japronx.com,👩 成人频道
-DOMAIN-SUFFIX,japronx.net,👩 成人频道
-DOMAIN-SUFFIX,japronx.tv,👩 成人频道
-DOMAIN-SUFFIX,japronx.vip,👩 成人频道
+DOMAIN-KEYWORD,japonx,DIRECT
+DOMAIN-SUFFIX,japronx,DIRECT
+DOMAIN-SUFFIX,japonx.com,DIRECT
+DOMAIN-SUFFIX,japonx.net,DIRECT
+DOMAIN-SUFFIX,japonx.tv,DIRECT
+DOMAIN-SUFFIX,japonx.vip,DIRECT
+DOMAIN-SUFFIX,japronx.com,DIRECT
+DOMAIN-SUFFIX,japronx.net,DIRECT
+DOMAIN-SUFFIX,japronx.tv,DIRECT
+DOMAIN-SUFFIX,japronx.vip,DIRECT
 # 群晖
 DOMAIN-KEYWORD,synology,DIRECT
