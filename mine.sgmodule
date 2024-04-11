@@ -1,0 +1,25 @@
+#!name=自用规则
+#!desc=他人不要使用
+
+[Rule]
+# > surfshark
+DOMAIN-KEYWORD,surfshark,🌐 全球直连
+DOMAIN-KEYWORD,appcenter,🌐 全球直连
+DOMAIN-KEYWORD,uymgg1,🌐 全球直连
+DOMAIN-KEYWORD,surfsharkstatus,🌐 全球直连
+DOMAIN-KEYWORD,ipv6505,🌐 全球直连
+# > Pornemby Vip
+DOMAIN-SUFFIX,ii00.cc,👩 成人频道
+# Japonx
+DOMAIN-KEYWORD,japonx,👩 成人频道
+DOMAIN-SUFFIX,japronx,👩 成人频道
+DOMAIN-SUFFIX,japonx.com,👩 成人频道
+DOMAIN-SUFFIX,japonx.net,👩 成人频道
+DOMAIN-SUFFIX,japonx.tv,👩 成人频道
+DOMAIN-SUFFIX,japonx.vip,👩 成人频道
+DOMAIN-SUFFIX,japronx.com,👩 成人频道
+DOMAIN-SUFFIX,japronx.net,👩 成人频道
+DOMAIN-SUFFIX,japronx.tv,👩 成人频道
+DOMAIN-SUFFIX,japronx.vip,👩 成人频道
+# 群晖
+DOMAIN-KEYWORD,synology,DIRECT
