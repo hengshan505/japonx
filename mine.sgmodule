@@ -1,9 +1,6 @@
 #!name=自用规则
 #!desc=他人不要使用
 
-[General]
-ipv6 = true
-
 [Rule]
 # > surfshark
 DOMAIN-KEYWORD,surfshark,DIRECT
