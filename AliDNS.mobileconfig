@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>PayloadContent</key>
+		<array>
+			<dict>
+				<key>DNSSettings</key>
+				<dict>
+					<key>DNSProtocol</key>
+					<string>TLS</string>
+					<key>ServerAddresses</key>
+					<array>
+						<string>223.5.5.5</string>
+						<string>223.6.6.6</string>
+						<string>2400:3200::1</string>
+						<string>2400:3200:baba::1</string>
+					</array>
+					<key>ServerName</key>
+					<string>dns.alidns.com</string>
+				</dict>
+				<key>PayloadDisplayName</key>
+				<string>AliDNS DoT</string>
+				<key>PayloadIdentifier</key>
+				<string>com.apple.dnsSettings.managed.d2fb19e3-ba1c-42c0-bba6-ae243e5acdbf</string>
+				<key>PayloadType</key>
+				<string>com.apple.dnsSettings.managed</string>
+				<key>PayloadUUID</key>
+				<string>d2fb19e3-ba1c-42c0-bba6-ae243e5acdbf</string>
+				<key>PayloadVersion</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>DNSSettings</key>
+				<dict>
+					<key>DNSProtocol</key>
+					<string>HTTPS</string>
+					<key>ServerAddresses</key>
+					<array>
+						<string>223.5.5.5</string>
+						<string>223.6.6.6</string>
+						<string>2400:3200::1</string>
+						<string>2400:3200:baba::1</string>
+					</array>
+					<key>ServerURL</key>
+					<string>https://dns.alidns.com/dns-query</string>
+				</dict>
+				<key>PayloadDisplayName</key>
+				<string>AliDNS DoH</string>
+				<key>PayloadIdentifier</key>
+				<string>com.apple.dnsSettings.managed.449a7d4b-2711-4bb8-9f94-1255187dbfe2</string>
+				<key>PayloadType</key>
+				<string>com.apple.dnsSettings.managed</string>
+				<key>PayloadUUID</key>
+				<string>449a7d4b-2711-4bb8-9f94-1255187dbfe2</string>
+				<key>PayloadVersion</key>
+				<integer>1</integer>
+			</dict>
+		</array>
+		<key>PayloadDescription</key>
+		<string>在iOS/iPadOS设备上全局使用加密的阿里公共DNS。
+包含DoT与DoH两种方式。
+Enable encrypted DNS on iOS/iPadOS/macOS.
+This profile contains AliDNS DoT and DoH both.
+</string>
+		<key>PayloadDisplayName</key>
+		<string>AliDNS</string>
+		<key>PayloadIdentifier</key>
+		<string>INSPIRON-7590.f1d01fb0-0a2c-4127-8c53-7b713643db91</string>
+		<key>PayloadType</key>
+		<string>Configuration</string>
+		<key>PayloadUUID</key>
+		<string>f1d01fb0-0a2c-4127-8c53-7b713643db91</string>
+		<key>PayloadVersion</key>
+		<integer>1</integer>
+	</dict>
+</plist>
