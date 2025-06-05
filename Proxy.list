@@ -41,8 +41,7 @@ DOMAIN-SUFFIX,ipleak.net
 DOMAIN-SUFFIX,browserleaks.com
 DOMAIN-SUFFIX,browserleaks.org
 DOMAIN-SUFFIX,browserleaks.net
-DOMAIN-SUFFIX,surfshark.com
-
+# DOMAIN-SUFFIX,surfshark.com
 DOMAIN-SUFFIX,llgjc1.com
 DOMAIN-SUFFIX,qichiyu.com
 # DOMAIN-SUFFIX,groq.com
