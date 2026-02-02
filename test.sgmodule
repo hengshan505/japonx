@@ -1,10 +1,11 @@
 #!name=回家自动直连助手
-#!desc=连接到家里的 Wi-Fi 时自动切换为“直连模式”，离开家或使用蜂窝网络时自动恢复为“规则模式”。
+#!desc=连接特定 Wi-Fi 切换直连，离开切换规则模式。请在参数中修改你的 WiFi 名称。
 #!category=自动化
 
 [Script]
-# 监听网络切换事件
-auto_mode = type=event,event-name=network-changed,script-path=https://raw.githubusercontent.com/hengshan505/japonx/refs/heads/master/auto_outbound.js,argument="HOME_SSID=GL-MT6000-cb7-5G,HOME_MODE=direct,AWAY_MODE=rule"
+# 事件触发：当网络环境变化时运行
+# 请将 argument 中的 HOME_SSID 修改为你家的 WiFi 名字
+自动切换模式 = type=event,event-name=network-changed,script-path=auto_outbound.js,argument=HOME_SSID=GL-MT6000-cb7-5G
 
 [MITM]
 hostname = %APPEND% google.com
