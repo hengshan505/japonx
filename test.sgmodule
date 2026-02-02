@@ -2,10 +2,24 @@
 #!desc=连接指定 Wi-Fi 时自动切换为直连模式，离开或使用其他网络时恢复规则模式。
 #!category=自动化
 
-[Script]
+#[Script]
 # 当网络环境变化时触发脚本
 # 您可以在这里修改 HOME_SSID= 后的名称
-自动切换模式 = type=event,event-name=network-changed,script-path=https://raw.githubusercontent.com/hengshan505/japonx/refs/heads/master/auto_outbound.js,argument=HOME_SSID=GL-MT6000-cb7-5G
+#自动切换模式 = type=event,event-name=network-changed,script-path=https://raw.githubusercontent.com/hengshan505/japonx/refs/heads/master/auto_outbound.js,argument=HOME_SSID=GL-MT6000-cb7-5G
+
+#[MITM]
+#hostname = %APPEND% google.com
+
+
+
+#!name=回家自动直连助手
+#!desc=连接指定的多个 Wi-Fi 时自动切换为直连模式，否则恢复规则模式。
+#!category=自动化
+
+[Script]
+# 在 argument=HOME_SSID= 后面填入你的多个 WiFi，用逗号隔开
+# 例如：HOME_SSID=家里的WiFi,办公室的WiFi,备用WiFi
+自动切换模式 = type=event,event-name=network-changed,script-path=https://raw.githubusercontent.com/hengshan505/japonx/refs/heads/master/auto_outbound2.js,argument=HOME_SSID=GL-MT6000-cb7-5G,mak,Guest_WiFi
 
 [MITM]
 hostname = %APPEND% google.com
