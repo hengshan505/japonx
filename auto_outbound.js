@@ -1,30 +1,30 @@
 /**
- * Surge 自动切换出站模式脚本 - 修正版
+ * 自动切换出站模式 (参考 Peng-YM 稳健版)
+ * 逻辑：蜂窝->规则；指定WiFi->直连；其他WiFi->规则
  */
 
-// 获取参数中的 SSID
-const homeSSID = getArgument('HOME_SSID') || 'GL-MT6000-cb7-5G'; 
-const currentSSID = $network.v4.ssid;
+// --- 配置区域 ---
+const CONFIG = {
+  home_wifi: "GL-MT6000-cb7-5G", // 您家的 WiFi
+  cellular_mode: "rule",         // 蜂窝网模式
+  wifi_default_mode: "rule",     // 其他 WiFi 默认模式
+  home_mode: "direct"            // 家里 WiFi 模式
+};
 
-console.log(`当前 SSID: ${currentSSID}, 目标 SSID: ${homeSSID}`);
+const ssid = $network.wifi.ssid; // 获取当前 WiFi 名称
+let targetMode = ssid ? (ssid === CONFIG.home_wifi ? CONFIG.home_mode : CONFIG.wifi_default_mode) : CONFIG.cellular_mode;
 
-if (currentSSID === homeSSID) {
-    // 回家了，切换为直连模式
-    $surge.setOutboundMode('direct');
-    $notification.post("Surge 自动化", "🏠 已回到家", `自动切换至：直连模式 (SSID: ${currentSSID})`);
-} else {
-    // 在外面或使用蜂窝网络，切换为规则模式
-    $surge.setOutboundMode('rule');
-    // 如果您不想每次切蜂窝都弹窗，可以注释掉下面这行
-    $notification.post("Surge 自动化", "🚀 已离开家", `自动切换至：规则模式 (SSID: ${currentSSID || '蜂窝网络'})`);
+// 执行切换
+$surge.setOutboundMode(targetMode);
+
+// 智能通知（通过持久化存储记录上次状态，避免重复弹窗）
+const lastSSID = $persistentStore.read("last_network_ssid");
+const currentNetwork = ssid ? `Wi-Fi: ${ssid}` : "蜂窝数据";
+
+if (lastSSID !== currentNetwork) {
+    const modeName = { "rule": "🚦规则模式", "direct": "🎯直连模式", "global-proxy": "🚀全局模式" }[targetMode];
+    $notification.post("🤖 Surge 运行模式", `当前网络：${currentNetwork}`, `已自动切换至：${modeName}`);
+    $persistentStore.write(currentNetwork, "last_network_ssid");
 }
 
 $done();
-
-function getArgument(key) {
-    if (typeof $argument === 'undefined' || !$argument) return null;
-    // 兼容 HOME_SSID=XXX 或直接传入 XXX 的情况
-    if (!$argument.includes('=')) return $argument.trim();
-    let arg = $argument.split(',').find(a => a.includes(key));
-    return arg ? arg.split('=')[1].replace(/\"/g, '').trim() : null;
-}
