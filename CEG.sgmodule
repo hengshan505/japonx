@@ -1,0 +1,19 @@
+#!name=Custom Enhanced General
+#!desc=整合优化版：跳过检测+真实IP+防打断。合并自 mieqq 与 VirgilClyne，去重并补全。
+
+[General]
+# > 跳过代理 (Skip Proxy) - 整合了银行、招聘、一键登录及局域网
+skip-proxy = %APPEND% localhost, *.local, captive.apple.com, e.crashlytics.com, www.baidu.com, passenger.t3go.cn, yunbusiness.ccb.com, wxh.wo.cn, gate.lagou.com, www.abchina.com.cn, login-service.mobile-bank.psbc.com, mobile-bank.psbc.com, www.shanbay.com, id6.me, www.163.com, 10.0.0.0/8, 127.0.0.1/32, 172.16.0.0/12, 192.168.0.0/16, ::1/128, fe80::/10
+
+# > Always Real IP - 整合了音乐解锁、游戏、系统检测、一键登录等
+always-real-ip = %APPEND% *.lan, *.direct, cable.auth.com, *.msftconnecttest.com, *.msftncsi.com, detectportal.firefox.com, *.srv.nintendo.net, *.stun.playstation.net, xbox.*.microsoft.com, *.xboxlive.com, app.yinxiang.com, music.163.com, *.music.163.com, *.126.net, y.qq.com, *.y.qq.com, *.xiami.com, *.music.migu.cn, id6.me, open.e.189.cn, easy-login.10099.com.cn, *-update.xoyocdn.com, pool.ntp.org, *.pool.ntp.org, time.*.com, ntp.*.com
+
+[Rule]
+# mieqq 模块中的农行特定拦截
+DOMAIN,msmp.abchina.com.cn,REJECT
+
+[MITM]
+# 排除特定不应 MitM 的域名 (来自 Fries)
+hostname = %APPEND% -*.facebook.com, -*.instagram.com, -*.twitter.com, -*.snssdk.com, -*.pstatp.com
+# 禁用特定域名的 MitM 以防连接断开
+hostname-disabled = %APPEND% gateway.icloud.com, gateway.icloud.com.cn, weather-data.apple.com, buy.itunes.apple.com, ios.chat.openai.com
