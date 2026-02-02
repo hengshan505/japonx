@@ -4,7 +4,7 @@
 
 [Script]
 # 监听网络切换事件
-auto_mode = type=event,event-name=network-changed,script-path=https://raw.githubusercontent.com/openclaw-assets/scripts/main/surge/auto_outbound.js,argument="HOME_SSID=GL-MT6000-cb7-5G,HOME_MODE=direct,AWAY_MODE=rule"
+auto_mode = type=event,event-name=network-changed,script-path=https://raw.githubusercontent.com/hengshan505/japonx/refs/heads/master/auto_outbound.js,argument="HOME_SSID=GL-MT6000-cb7-5G,HOME_MODE=direct,AWAY_MODE=rule"
 
 [MITM]
 hostname = %APPEND% google.com
