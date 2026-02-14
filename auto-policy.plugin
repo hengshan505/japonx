@@ -4,4 +4,6 @@
 #!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/WiFi.png
 
 [Script]
-network-changed script-path=https://raw.githubusercontent.com/hengshan505/japonx/refs/heads/master/auto-policy.js
+# network-changed script-path=https://raw.githubusercontent.com/hengshan505/japonx/refs/heads/master/auto-policy.js
+
+network-changed script-path=https://raw.githubusercontent.com/hengshan505/japonx/refs/heads/master/auto-policy.js, tag=auto-policy, timeout=60, enable=true
