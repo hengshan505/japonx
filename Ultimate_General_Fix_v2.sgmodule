@@ -4,7 +4,7 @@
 
 [General]
 # > 优化 DNS 稳定性 (解决日志中的 DoH 频繁超时问题)
-dns-server = %APPEND% 223.5.5.5, 119.29.29.29, 114.114.114.114
+# dns-server = %APPEND% 223.5.5.5, 119.29.29.29, 114.114.114.114
 
 # > 跳过代理 (Skip Proxy) - 整合银行、一键登录及局域网，确保日志中那些检测不走代理
 skip-proxy = %APPEND% localhost, *.local, captive.apple.com, e.crashlytics.com, www.baidu.com, passenger.t3go.cn, yunbusiness.ccb.com, wxh.wo.cn, gate.lagou.com, www.abchina.com.cn, login-service.mobile-bank.psbc.com, mobile-bank.psbc.com, www.shanbay.com, id6.me, www.163.com, 10.0.0.0/8, 127.0.0.1/32, 172.16.0.0/12, 192.168.0.0/16, ::1/128, fe80::/10
