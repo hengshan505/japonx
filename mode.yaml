@@ -1,0 +1,13 @@
+name: 回家自动直连助手
+description: 连接指定的多个 Wi-Fi 时自动切换为直连模式，否则恢复规则模式。
+dns: {}
+scriptings:
+- network:
+    name: 自动切换模式
+    script_url: https://raw.githubusercontent.com/hengshan505/japonx/refs/heads/master/auto_outbound.js
+    env:
+      _compat.$argument: HOME_SSID=GL-MT6000-cb7-5G,mak,Guest_WiFi
+mitm:
+  hostnames:
+    includes:
+    - google.com
