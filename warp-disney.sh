@@ -1,192 +1,75 @@
-#!/usr/bin/env bash
+#!/bin/bash
+# ==========================================
+# Disney+ 解锁一键配置脚本 (基于 Cloudflare WARP)
+# 模仿自 warp-google-unlock 风格
+# ==========================================
 
-# ==================================================
-# Disney+ Unlock via Cloudflare WARP
-# Author: ChatGPT
-# Inspired by warp-google.sh
-# ==================================================
-
-set -e
-
+# 颜色定义
 RED='\033[0;31m'
 GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
+YELLOW='\033[0;33m'
 PLAIN='\033[0m'
 
-SERVICE_NAME="warp-disney"
+# 检查 Root 权限
+if [ "$EUID" -ne 0 ]; then
+  echo -e "${RED}[错误] 请使用 root 用户权限运行此脚本！${PLAIN}"
+  exit 1
+fi
 
-check_root() {
-    [[ $EUID -ne 0 ]] && echo -e "${RED}请使用 root 运行${PLAIN}" && exit 1
-}
+echo -e "${GREEN}==========================================${PLAIN}"
+echo -e "${GREEN}    开始配置 WARP 代理以解锁 Disney+      ${PLAIN}"
+echo -e "${GREEN}==========================================${PLAIN}"
 
-detect_os() {
-    if [[ -f /etc/debian_version ]]; then
-        OS="debian"
-    elif [[ -f /etc/redhat-release ]]; then
-        OS="centos"
-    else
-        echo -e "${RED}不支持的系统${PLAIN}"
-        exit 1
-    fi
-}
+# 1. 安装基础依赖
+echo -e "\n${YELLOW}[1/4] 正在更新包列表并安装必要依赖...${PLAIN}"
+apt-get update -q
+apt-get install -y curl gnupg lsb-release
 
-install_warp() {
-    echo -e "${GREEN}安装 Cloudflare WARP...${PLAIN}"
+# 2. 添加 Cloudflare 官方 GPG 密钥和源
+echo -e "\n${YELLOW}[2/4] 正在添加 Cloudflare WARP 仓库...${PLAIN}"
+curl -fsSL https://pkg.cloudflareclient.com/pubkey.gpg | gpg --yes --dearmor --output /usr/share/keyrings/cloudflare-warp-archive-keyring.gpg
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/cloudflare-client.list
 
-    if [[ "$OS" == "debian" ]]; then
-        apt update
-        apt install -y curl gnupg lsb-release iptables
+# 3. 安装 WARP 客户端
+echo -e "\n${YELLOW}[3/4] 正在安装 Cloudflare WARP 客户端...${PLAIN}"
+apt-get update -q
+apt-get install -y cloudflare-warp
 
-        curl -fsSL https://pkg.cloudflareclient.com/pubkey.gpg \
-            | gpg --dearmor -o /usr/share/keyrings/cloudflare-warp-archive-keyring.gpg
+# 4. 配置并启动 WARP (SOCKS5 代理模式)
+echo -e "\n${YELLOW}[4/4] 正在注册并配置 WARP SOCKS5 模式 (端口: 40000)...${PLAIN}"
 
-        echo "deb [signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] \
-https://pkg.cloudflareclient.com/ $(lsb_release -cs) main" \
-            > /etc/apt/sources.list.d/cloudflare-client.list
+# 兼容新老版本的注册命令
+warp-cli --accept-tos register 2>/dev/null || warp-cli --accept-tos registration new
 
-        apt update
-        apt install -y cloudflare-warp
+# 设置为本地代理模式，防止接管全局网络
+warp-cli --accept-tos set-mode proxy
+# 设置代理端口
+warp-cli --accept-tos set-proxy-port 40000
+# 连接 WARP
+warp-cli --accept-tos connect
 
-    else
-        yum install -y curl epel-release
-        rpm -ivh https://pkg.cloudflareclient.com/cloudflare-release-el8.rpm
-        yum install -y cloudflare-warp
-    fi
+# 等待连接建立
+echo "等待 WARP 建立连接..."
+sleep 5
 
-    warp-cli --accept-tos register
-    warp-cli --accept-tos mode warp
-    warp-cli --accept-tos connect
-
-    sleep 5
-
-    echo -e "${GREEN}WARP 已连接${PLAIN}"
-}
-
-create_routing() {
-
-cat > /usr/local/bin/warp-disney-route.sh << 'EOF'
-#!/usr/bin/env bash
-
-DISNEY_DOMAINS=(
-    disneyplus.com
-    disney-plus.net
-    disneyplus.disney.com
-    bamgrid.com
-    disney.api.edge.bamgrid.com
-)
-
-WARP_IF="CloudflareWARP"
-
-for domain in "${DISNEY_DOMAINS[@]}"; do
-    ips=$(dig +short $domain | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}')
-
-    for ip in $ips; do
-        ip rule add to $ip lookup main 2>/dev/null || true
-    done
-done
-
-EOF
-
-chmod +x /usr/local/bin/warp-disney-route.sh
-}
-
-create_service() {
-
-cat > /etc/systemd/system/${SERVICE_NAME}.service << EOF
-[Unit]
-Description=Disney+ WARP Route
-After=network.target
-
-[Service]
-Type=oneshot
-ExecStart=/usr/local/bin/warp-disney-route.sh
-RemainAfterExit=yes
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-    systemctl daemon-reload
-    systemctl enable ${SERVICE_NAME}
-    systemctl start ${SERVICE_NAME}
-}
-
-check_unlock() {
-
-    echo -e "${GREEN}检测 Disney+ 解锁状态...${PLAIN}"
-
-    result=$(curl -s https://disney.api.edge.bamgrid.com/devices)
-
-    if [[ "$result" == *"errors"* ]]; then
-        echo -e "${RED}Disney+ 可能未解锁${PLAIN}"
-    else
-        echo -e "${GREEN}Disney+ 已解锁${PLAIN}"
-    fi
-}
-
-uninstall_all() {
-
-    systemctl stop ${SERVICE_NAME} 2>/dev/null || true
-    systemctl disable ${SERVICE_NAME} 2>/dev/null || true
-
-    rm -f /etc/systemd/system/${SERVICE_NAME}.service
-    rm -f /usr/local/bin/warp-disney-route.sh
-
-    warp-cli --accept-tos disconnect || true
-
-    if [[ "$OS" == "debian" ]]; then
-        apt remove -y cloudflare-warp
-    else
-        yum remove -y cloudflare-warp
-    fi
-
-    systemctl daemon-reload
-
-    echo -e "${GREEN}卸载完成${PLAIN}"
-}
-
-show_status() {
-
-    echo "------------------------"
-    warp-cli --accept-tos status || true
-    echo "------------------------"
-
-    curl -s https://www.cloudflare.com/cdn-cgi/trace | grep warp
-
-    echo "------------------------"
-
-    check_unlock
-}
-
-install_all() {
-    install_warp
-    create_routing
-    create_service
-    check_unlock
-}
-
-main() {
-
-    check_root
-    detect_os
-
-    case "$1" in
-        install)
-            install_all
-            ;;
-        uninstall)
-            uninstall_all
-            ;;
-        status)
-            show_status
-            ;;
-        *)
-            echo "用法:"
-            echo "bash warp-disney.sh install"
-            echo "bash warp-disney.sh uninstall"
-            echo "bash warp-disney.sh status"
-            ;;
-    esac
-}
-
-main "$@"
+# 5. 状态检查
+STATUS=$(warp-cli --accept-tos status | grep -i 'status' | awk '{print $3}')
+if [[ "$STATUS" == *"Connected"* ]]; then
+    echo -e "\n${GREEN}==========================================${PLAIN}"
+    echo -e "${GREEN} [成功] Cloudflare WARP SOCKS5 代理已启动！${PLAIN}"
+    echo -e "${GREEN} 本地监听地址: 127.0.0.1:40000            ${PLAIN}"
+    echo -e "${GREEN}==========================================${PLAIN}"
+    
+    echo -e "\n${YELLOW}【重要：下一步配置指南】${PLAIN}"
+    echo -e "脚本已建立好解锁隧道。请在您的 V2Ray / Xray 或 Sing-box 配置文件中，"
+    echo -e "将以下 Disney+ 相关域名的流量路由至 SOCKS5 (127.0.0.1:40000)："
+    echo -e "  - disneyplus.com"
+    echo -e "  - bamgrid.com"
+    echo -e "  - dssott.com"
+    echo -e "  - disney.com"
+    echo -e "  - disney-plus.net"
+    echo -e "  - disneynow.com"
+    echo -e "或直接在路由规则中使用 ${GREEN}geosite:disney${PLAIN}"
+else
+    echo -e "\n${RED}[失败] WARP 未能成功连接，请使用 'warp-cli status' 检查报错日志。${PLAIN}"
+fi
