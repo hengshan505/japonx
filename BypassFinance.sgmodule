@@ -1,0 +1,67 @@
+#!name=金融理财与税务直连 (Bypass Finance & Tax)
+#!desc=解决部分银行、券商、金融理财及电子税务类 App 提示“检测到 VPN”或无法登录的问题。将其流量强制走直连 (DIRECT) 并返回真实 IP。
+#!system=ios
+
+[General]
+# 强制返回真实 IP，解决部分 App 的严格 DNS 校验及 Fake IP 代理检测
+always-real-ip = %APPEND% *.icbc.com.cn, *.abchina.com, *.abchina.com.cn, *.cmbchina.com, *.cmbimg.com, *.ccb.com, *.boc.cn, *.bankcomm.com, *.psbc.com, *.spdb.com.cn, *.pingan.com, *.pingan.com.cn, *.citicbank.com, *.cebbank.com, *.cgbchina.com.cn, *.cmbc.com.cn, *.cib.com.cn, *.10jqka.com.cn, *.eastmoney.com, *.htsc.com.cn, *.gtja.com, *.citics.com, *.gf.com.cn, *.cmschina.com, *.htsec.com, *.chinatax.gov.cn, *.tax.gov.cn
+
+[Rule]
+# === 电子税务及政务服务 ===
+# 国家税务总局、各省电子税务局、个人所得税APP
+DOMAIN-SUFFIX,chinatax.gov.cn,DIRECT
+DOMAIN-SUFFIX,tax.gov.cn,DIRECT
+
+# === 常见银行 ===
+# 工商银行
+DOMAIN-SUFFIX,icbc.com.cn,DIRECT
+# 农业银行
+DOMAIN-SUFFIX,abchina.com,DIRECT
+DOMAIN-SUFFIX,abchina.com.cn,DIRECT
+# 招商银行
+DOMAIN-SUFFIX,cmbchina.com,DIRECT
+DOMAIN-SUFFIX,cmbimg.com,DIRECT
+# 建设银行
+DOMAIN-SUFFIX,ccb.com,DIRECT
+# 中国银行
+DOMAIN-SUFFIX,boc.cn,DIRECT
+# 交通银行
+DOMAIN-SUFFIX,bankcomm.com,DIRECT
+# 邮政储蓄
+DOMAIN-SUFFIX,psbc.com,DIRECT
+# 浦发银行
+DOMAIN-SUFFIX,spdb.com.cn,DIRECT
+# 平安银行
+DOMAIN-SUFFIX,pingan.com,DIRECT
+DOMAIN-SUFFIX,pingan.com.cn,DIRECT
+# 中信银行
+DOMAIN-SUFFIX,citicbank.com,DIRECT
+# 光大银行
+DOMAIN-SUFFIX,cebbank.com,DIRECT
+# 广发银行
+DOMAIN-SUFFIX,cgbchina.com.cn,DIRECT
+# 民生银行
+DOMAIN-SUFFIX,cmbc.com.cn,DIRECT
+# 兴业银行
+DOMAIN-SUFFIX,cib.com.cn,DIRECT
+
+# === 常见券商与理财 ===
+# 同花顺
+DOMAIN-SUFFIX,10jqka.com.cn,DIRECT
+# 东方财富
+DOMAIN-SUFFIX,eastmoney.com,DIRECT
+# 华泰证券
+DOMAIN-SUFFIX,htsc.com.cn,DIRECT
+# 国泰君安
+DOMAIN-SUFFIX,gtja.com,DIRECT
+# 中信证券
+DOMAIN-SUFFIX,citics.com,DIRECT
+# 广发证券
+DOMAIN-SUFFIX,gf.com.cn,DIRECT
+# 招商证券
+DOMAIN-SUFFIX,cmschina.com,DIRECT
+# 海通证券
+DOMAIN-SUFFIX,htsec.com,DIRECT
+
+# 兜底关键字规则
+DOMAIN-KEYWORD,bank,DIRECT
