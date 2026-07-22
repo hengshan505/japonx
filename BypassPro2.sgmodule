@@ -3,114 +3,15 @@
 #!author=ChatGPT
 #!homepage=https://github.com
 
-
-####################################################
-# 真实IP解析
-# 防止Fake-IP导致金融App异常
-####################################################
-
 [General]
+# 真实IP解析 (防止Fake-IP导致金融App异常)
+always-real-ip = %APPEND% *.icbc.com.cn, *.ccb.com, *.abchina.com, *.boc.cn, *.bankcomm.com, *.cmbchina.com, *.cmbc.com.cn, *.unionpay.com, *.95516.com, *.alipay.com, *.alipayobjects.com, *.tenpay.com, *.wechat.com, *.weixin.qq.com, *.eastmoney.com, *.10jqka.com.cn, *.htsc.com.cn, *.citics.com, *.cjis.cn, *.gtja.com, *.cmschina.com.cn, *.gf.com.cn
 
-always-real-ip = %APPEND%
-
-# 银行
-*.icbc.com.cn
-*.ccb.com,
-*.abchina.com,
-*.boc.cn,
-*.bankcomm.com,
-*.cmbchina.com,
-*.cmbc.com.cn,
-
-# 银联
-*.unionpay.com,
-*.95516.com,
-
-
-# 支付
-*.alipay.com,
-*.alipayobjects.com,
-*.tenpay.com,
-*.wechat.com,
-*.weixin.qq.com,
-
-
-# 证券
-*.eastmoney.com,
-*.10jqka.com.cn,
-*.htsc.com.cn,
-*.citics.com,
-*.cjis.cn,
-*.gtja.com,
-*.cmschina.com.cn,
-*.gf.com.cn
-
-
-
-####################################################
-# 绕过Surge VPN处理
-# 比DIRECT更接近真实网络
-####################################################
-
-skip-proxy = %APPEND%
-
-# 银行
-
-*.icbc.com.cn,
-*.ccb.com,
-*.abchina.com,
-*.boc.cn,
-*.bankcomm.com,
-*.cmbchina.com,
-*.cmbc.com.cn,
-
-
-# 银联
-
-*.unionpay.com,
-*.95516.com,
-
-
-# 支付宝
-
-*.alipay.com,
-*.alipayobjects.com,
-
-
-# 微信支付
-
-*.wechat.com,
-*.weixin.qq.com,
-*.tenpay.com,
-
-
-# 证券
-
-*.eastmoney.com,
-*.10jqka.com.cn,
-*.htsc.com.cn,
-*.citics.com,
-*.gtja.com,
-*.cmschina.com.cn,
-*.gf.com.cn
-
-# 政务
-*.chinatax.gov.cn,
-*.tax.gov.cn
-
-
-
-####################################################
-# 规则
-####################################################
+# 绕过Surge VPN处理 (比DIRECT更接近真实网络)
+skip-proxy = %APPEND% *.icbc.com.cn, *.ccb.com, *.abchina.com, *.boc.cn, *.bankcomm.com, *.cmbchina.com, *.cmbc.com.cn, *.unionpay.com, *.95516.com, *.alipay.com, *.alipayobjects.com, *.wechat.com, *.weixin.qq.com, *.tenpay.com, *.eastmoney.com, *.10jqka.com.cn, *.htsc.com.cn, *.citics.com, *.gtja.com, *.cmschina.com.cn, *.gf.com.cn, *.chinatax.gov.cn, *.tax.gov.cn
 
 [Rule]
-
-
-############################
-# 银行
-############################
-
+# === 银行 ===
 DOMAIN-SUFFIX,icbc.com.cn,DIRECT
 DOMAIN-SUFFIX,ccb.com,DIRECT
 DOMAIN-SUFFIX,abchina.com,DIRECT
@@ -119,12 +20,7 @@ DOMAIN-SUFFIX,bankcomm.com,DIRECT
 DOMAIN-SUFFIX,cmbchina.com,DIRECT
 DOMAIN-SUFFIX,cmbc.com.cn,DIRECT
 
-
-
-############################
-# 证券
-############################
-
+# === 证券 ===
 DOMAIN-SUFFIX,eastmoney.com,DIRECT
 DOMAIN-SUFFIX,10jqka.com.cn,DIRECT
 DOMAIN-SUFFIX,htsc.com.cn,DIRECT
@@ -133,11 +29,6 @@ DOMAIN-SUFFIX,gtja.com,DIRECT
 DOMAIN-SUFFIX,cmschina.com.cn,DIRECT
 DOMAIN-SUFFIX,gf.com.cn,DIRECT
 
-
-############################
-# 政务/实名系统
-############################
-
+# === 政务/实名系统 ===
 DOMAIN-SUFFIX,chinatax.gov.cn,DIRECT
 DOMAIN-SUFFIX,tax.gov.cn,DIRECT
-
