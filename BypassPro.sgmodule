@@ -1,0 +1,49 @@
+#!name=金融税务与局域网·终极直连 (Bypass Pro)
+#!desc=汲取 mieqq skip-proxy 思路：不仅在规则层面直连，更在系统底层绕过 VPN 接口，彻底解决极端风控检测。同时放行局域网流量。
+#!system=ios
+
+[General]
+# 1. 真实 IP 解析 (应对部分 App 内部强制的 DNS 校验)
+always-real-ip = %APPEND% *.icbc.com.cn, *.abchina.com, *.abchina.com.cn, *.cmbchina.com, *.cmbimg.com, *.ccb.com, *.boc.cn, *.bankcomm.com, *.psbc.com, *.spdb.com.cn, *.pingan.com, *.pingan.com.cn, *.citicbank.com, *.cebbank.com, *.cgbchina.com.cn, *.cmbc.com.cn, *.cib.com.cn, *.10jqka.com.cn, *.eastmoney.com, *.htsc.com.cn, *.gtja.com, *.citics.com, *.gf.com.cn, *.cmschina.com, *.htsec.com, *.chinatax.gov.cn, *.tax.gov.cn
+
+# 2. Skip Proxy (核心精华：系统底层直接绕过 Surge 引擎)
+# 包含：本地局域网IP组、常见路由器后台域名、以及所有核心金融与电子税务域名。
+skip-proxy = %APPEND% 127.0.0.1, 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 100.64.0.0/10, localhost, *.local, router.asus.com, tendawifi.com, tplogin.cn, miwifi.com, *.icbc.com.cn, *.abchina.com, *.abchina.com.cn, *.cmbchina.com, *.cmbimg.com, *.ccb.com, *.boc.cn, *.bankcomm.com, *.psbc.com, *.spdb.com.cn, *.pingan.com, *.pingan.com.cn, *.citicbank.com, *.cebbank.com, *.cgbchina.com.cn, *.cmbc.com.cn, *.cib.com.cn, *.10jqka.com.cn, *.eastmoney.com, *.htsc.com.cn, *.gtja.com, *.citics.com, *.gf.com.cn, *.cmschina.com, *.htsec.com, *.chinatax.gov.cn, *.tax.gov.cn
+
+[Rule]
+# 3. 规则兜底 (防止 App 使用非标准网络库未触发 skip-proxy，作为第二道防线)
+# === 电子税务 ===
+DOMAIN-SUFFIX,chinatax.gov.cn,DIRECT
+DOMAIN-SUFFIX,tax.gov.cn,DIRECT
+
+# === 常见银行 ===
+DOMAIN-SUFFIX,icbc.com.cn,DIRECT
+DOMAIN-SUFFIX,abchina.com,DIRECT
+DOMAIN-SUFFIX,abchina.com.cn,DIRECT
+DOMAIN-SUFFIX,cmbchina.com,DIRECT
+DOMAIN-SUFFIX,cmbimg.com,DIRECT
+DOMAIN-SUFFIX,ccb.com,DIRECT
+DOMAIN-SUFFIX,boc.cn,DIRECT
+DOMAIN-SUFFIX,bankcomm.com,DIRECT
+DOMAIN-SUFFIX,psbc.com,DIRECT
+DOMAIN-SUFFIX,spdb.com.cn,DIRECT
+DOMAIN-SUFFIX,pingan.com,DIRECT
+DOMAIN-SUFFIX,pingan.com.cn,DIRECT
+DOMAIN-SUFFIX,citicbank.com,DIRECT
+DOMAIN-SUFFIX,cebbank.com,DIRECT
+DOMAIN-SUFFIX,cgbchina.com.cn,DIRECT
+DOMAIN-SUFFIX,cmbc.com.cn,DIRECT
+DOMAIN-SUFFIX,cib.com.cn,DIRECT
+
+# === 常见券商 ===
+DOMAIN-SUFFIX,10jqka.com.cn,DIRECT
+DOMAIN-SUFFIX,eastmoney.com,DIRECT
+DOMAIN-SUFFIX,htsc.com.cn,DIRECT
+DOMAIN-SUFFIX,gtja.com,DIRECT
+DOMAIN-SUFFIX,citics.com,DIRECT
+DOMAIN-SUFFIX,gf.com.cn,DIRECT
+DOMAIN-SUFFIX,cmschina.com,DIRECT
+DOMAIN-SUFFIX,htsec.com,DIRECT
+
+# 兜底关键字规则
+DOMAIN-KEYWORD,bank,DIRECT
