@@ -14,7 +14,7 @@
 always-real-ip = %APPEND%
 
 # 银行
-*.icbc.com.cn,
+*.icbc.com.cn
 *.ccb.com,
 *.abchina.com,
 *.boc.cn,
