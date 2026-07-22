@@ -94,6 +94,10 @@ skip-proxy = %APPEND%
 *.cmschina.com.cn,
 *.gf.com.cn
 
+# 政务
+*.chinatax.gov.cn,
+*.tax.gov.cn
+
 
 
 ####################################################
@@ -116,25 +120,6 @@ DOMAIN-SUFFIX,cmbchina.com,DIRECT
 DOMAIN-SUFFIX,cmbc.com.cn,DIRECT
 
 
-############################
-# 银联
-############################
-
-DOMAIN-SUFFIX,unionpay.com,DIRECT
-DOMAIN-SUFFIX,95516.com,DIRECT
-
-
-############################
-# 支付
-############################
-
-DOMAIN-SUFFIX,alipay.com,DIRECT
-DOMAIN-SUFFIX,alipayobjects.com,DIRECT
-
-DOMAIN-SUFFIX,tenpay.com,DIRECT
-DOMAIN-SUFFIX,wechat.com,DIRECT
-DOMAIN-SUFFIX,weixin.qq.com,DIRECT
-
 
 ############################
 # 证券
@@ -153,24 +138,6 @@ DOMAIN-SUFFIX,gf.com.cn,DIRECT
 # 政务/实名系统
 ############################
 
-DOMAIN-SUFFIX,gov.cn,DIRECT
 DOMAIN-SUFFIX,chinatax.gov.cn,DIRECT
-DOMAIN-SUFFIX,12306.cn,DIRECT
+DOMAIN-SUFFIX,tax.gov.cn,DIRECT
 
-
-############################
-# 国内公共服务
-############################
-
-DOMAIN-SUFFIX,qq.com,DIRECT
-DOMAIN-SUFFIX,aliyuncs.com,DIRECT
-DOMAIN-SUFFIX,alicdn.com,DIRECT
-DOMAIN-SUFFIX,tencent.com,DIRECT
-
-
-
-############################
-# 默认
-############################
-
-FINAL,PROXY
