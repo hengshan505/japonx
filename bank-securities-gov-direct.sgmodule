@@ -1,0 +1,47 @@
+#!name=银行证券政务直连
+#!desc=银行 / 证券 / 政务类 App 域名走 DIRECT 直连，避免 App 提示"正在使用 VPN"
+#!author=Muse
+#!icon=🏦
+
+[Rule]
+# ============ 银行 ============
+DOMAIN-SUFFIX,ccb.com,DIRECT
+DOMAIN-SUFFIX,icbc.com.cn,DIRECT
+DOMAIN-SUFFIX,abchina.com,DIRECT
+DOMAIN-SUFFIX,boc.cn,DIRECT
+DOMAIN-SUFFIX,bankcomm.com,DIRECT
+DOMAIN-SUFFIX,cmbchina.com,DIRECT
+DOMAIN-SUFFIX,cmbmb.com,DIRECT
+DOMAIN-SUFFIX,psbc.com,DIRECT
+DOMAIN-SUFFIX,ecitic.com,DIRECT
+DOMAIN-SUFFIX,cebbank.com,DIRECT
+DOMAIN-SUFFIX,cmbc.com.cn,DIRECT
+DOMAIN-SUFFIX,spdb.com.cn,DIRECT
+DOMAIN-SUFFIX,cib.com.cn,DIRECT
+DOMAIN-SUFFIX,pingan.com,DIRECT
+DOMAIN-SUFFIX,hxb.com.cn,DIRECT
+DOMAIN-SUFFIX,cgbchina.com.cn,DIRECT
+DOMAIN-SUFFIX,czbank.com,DIRECT
+DOMAIN-SUFFIX,unionpay.com,DIRECT
+DOMAIN-SUFFIX,95516.com,DIRECT
+# ============ 证券 ============
+DOMAIN-SUFFIX,10jqka.com.cn,DIRECT
+DOMAIN-SUFFIX,eastmoney.com,DIRECT
+DOMAIN-SUFFIX,gw.com.cn,DIRECT
+DOMAIN-SUFFIX,xueqiu.com,DIRECT
+DOMAIN-SUFFIX,tdx.com.cn,DIRECT
+DOMAIN-SUFFIX,wind.com.cn,DIRECT
+DOMAIN-SUFFIX,cs.ecitic.com,DIRECT
+DOMAIN-SUFFIX,gtja.com,DIRECT
+DOMAIN-SUFFIX,htsec.com,DIRECT
+DOMAIN-SUFFIX,htsc.com.cn,DIRECT
+DOMAIN-SUFFIX,newone.com.cn,DIRECT
+DOMAIN-SUFFIX,gf.com.cn,DIRECT
+DOMAIN-SUFFIX,swhysc.com,DIRECT
+DOMAIN-SUFFIX,chinastock.com.cn,DIRECT
+DOMAIN-SUFFIX,csc108.com,DIRECT
+DOMAIN-SUFFIX,guosen.com.cn,DIRECT
+DOMAIN-SUFFIX,sse.com.cn,DIRECT
+DOMAIN-SUFFIX,szse.cn,DIRECT
+# ============ 政务 ============
+DOMAIN-SUFFIX,gov.cn,DIRECT
