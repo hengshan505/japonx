@@ -13,3 +13,15 @@ DOMAIN-SUFFIX,siri.apple.com,DIRECT
 DOMAIN,dejavu.apple.com,DIRECT
 DOMAIN,sequoia.apple.com,DIRECT
 DOMAIN-SUFFIX,smoot.apple.com,DIRECT
+
+# Apple Intelligence：私有云计算及地区资格校验
+DOMAIN,gspe1-ssl.ls.apple.com,智能助理
+DOMAIN-SUFFIX,apple-relay.apple.com,智能助理
+DOMAIN-SUFFIX,apple-relay.cloudflare.com,智能助理
+DOMAIN-SUFFIX,apple-relay.fastly-edge.com,智能助理
+DOMAIN-SUFFIX,apple-relay.akamaized.net,智能助理
+DOMAIN-SUFFIX,cp4.cloudflare.com,智能助理
+
+# ChatGPT / OpenAI
+DOMAIN-SUFFIX,openai.com,智能助理
+DOMAIN-SUFFIX,chatgpt.com,智能助理
