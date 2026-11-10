@@ -1,0 +1,15 @@
+#!name=Apple Intelligence & Siri 分流优化
+#!desc=Siri 核心语音服务直连并使用真实 IP，避免代理或 Fake-IP 导致 Siri 报错。
+#!system=ios
+
+[General]
+skip-proxy = %APPEND% guzzoni.apple.com
+always-real-ip = %APPEND% guzzoni.apple.com, *.guzzoni.apple.com, *.siri.apple.com
+
+[Rule]
+# Siri 核心语音服务：必须直连
+DOMAIN-SUFFIX,guzzoni.apple.com,DIRECT
+DOMAIN-SUFFIX,siri.apple.com,DIRECT
+DOMAIN,dejavu.apple.com,DIRECT
+DOMAIN,sequoia.apple.com,DIRECT
+DOMAIN-SUFFIX,smoot.apple.com,DIRECT
