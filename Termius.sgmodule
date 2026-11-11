@@ -1,0 +1,7 @@
+#!name=Termius SSH Proxy
+#!desc=将 Termius SSH 客户端的流量全部交由代理策略处理
+#!author=ChatGPT
+
+[Rule]
+PROCESS-NAME,Termius,节点选择
+PROCESS-NAME,Termius Helper,节点选择
