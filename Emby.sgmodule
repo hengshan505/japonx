@@ -1,0 +1,14 @@
+#!name=UHDNow Emby 分流规则
+#!desc=UHDNow 域名分流，视频流量走 Emby，其余流量直连
+#!author=ChatGPT
+
+[Rule]
+DOMAIN,v1.uhdnow.com,Emby
+DOMAIN,v1.uhdgo.com,Emby
+DOMAIN,v1-vod1.uhdnow.com,Emby
+DOMAIN,v1-vod2.uhdnow.com,Emby
+DOMAIN,www.uhdnow.com,DIRECT
+DOMAIN,smart.uhdnow.com,DIRECT
+DOMAIN,speed.uhdnow.com,DIRECT
+DOMAIN-SUFFIX,uhdnow.online,DIRECT
+
