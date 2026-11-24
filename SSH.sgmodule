@@ -1,0 +1,7 @@
+#!name=SSH Traffic Proxy
+#!desc=将所有 SSH TCP 流量（22、2638端口）强制走代理
+#!author=ChatGPT
+
+[Rule]
+AND,((NETWORK,TCP),(DEST-PORT,22)),节点选择
+AND,((NETWORK,TCP),(DEST-PORT,2638)),节点选择
